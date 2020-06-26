@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -151,5 +152,4 @@
     <script src="<?= base_url(); ?>assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
     <script src="<?= base_url(); ?>assets/demo/demo.js"></script>
 </body>
-
 </html>
