@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Toko Bangunan | Pengguna
+        Toko Bangunan | Detail Transaksi
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -32,34 +32,37 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Form Ubah</h4>
+                                <h4 class="card-title">Form Detail Transaksi</h4>
                             </div>
                             <div class="card-body">
-                                <form action="<?= base_url(); ?>pengguna/ubah/<?= $dataID['id_pengguna']; ?>" method="post">
+                                <?php foreach($allData as $r) : ?>
+                                <form action="<?= base_url(); ?>transaksi/ubah/<?= $r['id'] ?>" method="post">
                                     <div class="form-group">
-                                        <label for="id_jabatan">ID Jabatan</label>
-                                        <select name="id_jabatan" class="form-control" id="id_jabatan">
-                                            <option value="1">Pemilik</option>
-                                            <option value="2">Kasir</option>
-                                            <option value="3">Pegawai</option>
-                                        </select>
+                                        <label for="produk">Produk</label>
+                                        <input type="hidden" value="<?= $r['harga'] ?>" name="produk" class="form-control" id="produk" placeholder="Produk" readonly="" required="">
+                                        <input type="text" value="<?= $r['produk'] ?>" name="nproduk" class="form-control" id="nproduk" placeholder="Produk" readonly="" required="">
                                     </div>
                                     <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input value="<?= $dataID['username']; ?>" type="text" name="username" class="form-control" id="username" placeholder="Nama pengguna">
+                                        <label for="dibeli">Dibeli</label>
+                                        <input type="number" readonly="" value="<?= $r['qty'] ?>" name="dibeli" class="form-control" id="dibeli" placeholder="Produk Dibeli" required="">
                                     </div>
                                     <div class="form-group">
-                                        <label for="nama">Nama</label>
-                                        <input value="<?= $dataID['nama']; ?>" type="text" name="nama" class="form-control" id="nama" placeholder="Nama pengguna">
+                                        <label for="total">Total Harga</label>
+                                        <input type="text" value="<?= $r['total'] ?>" placeholder="Total harga" class="form-control" name="total" id="total" readonly="">
                                     </div>
                                     <div class="form-group">
-                                        <label for="nomer_hp">Nomer HP</label>
-                                        <input value="<?= $dataID['nomor_hp']; ?>" type="number" name="nomor_hp" class="form-control" id="nomer_hp" placeholder="No HP. pengguna">
+                                        <label for="sisa">Sisa</label>
+                                        <input type="text" value="<?= $r['sisa'] ?>" name="sisa" class="form-control" id="sisa" placeholder="Sisa" readonly="">
                                     </div>
-                                    <button type="submit" class="btn btn-primary float-right">
+                                    <div class="form-group">
+                                        <label for="dibayar">Dibayar</label>
+                                        <input type="number" value="" name="dibayar" class="form-control" id="dibayar" placeholder="Dibayar" required="">
+                                    </div>
+                                    <button type="submit" <?= ($r['status'] == 'Lunas') ? 'disabled' : '' ?> class="btn btn-primary float-right">
                                         Submit
                                     </button>
                                 </form>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
@@ -82,6 +85,36 @@
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="<?= base_url(); ?>assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
     <script src="<?= base_url(); ?>assets/demo/demo.js"></script>
+
+    <script type="text/javascript">
+        $(() =>
+        {
+            $('#dibeli').on('change', () =>
+            {
+                let produk = $('#produk').val()
+                let dibeli = $('#dibeli').val()
+                let total
+
+                total = Number(produk) * Number(dibeli)
+
+                $('#total').val(total)
+            })
+
+            $('#dibayar').on('change', () =>
+            {
+                let dibayar = $('#dibayar').val()
+                let total = $('#sisa').val()
+                let sisa = Number(total) - Number(dibayar)
+
+                if(sisa < 0)
+                {
+                    sisa = 0
+                }
+
+                $('#sisa').val(sisa)
+            })
+        })
+    </script>
 </body>
 
 </html>

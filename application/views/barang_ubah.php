@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Toko Bangunan | Jabatan
+        Toko Bangunan | Barang
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -35,18 +35,42 @@
                                 <h4 class="card-title">Form Ubah</h4>
                             </div>
                             <div class="card-body">
-                                <form action="<?= base_url(); ?>jabatan/ubah/<?= $dataID['id_jabatan']; ?>" method="post">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="">Nama</label>
-                                            <input type="text" value="<?= $dataID['nama']; ?>" class="form-control" name="nama">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Keterangan</label>
-                                            <textarea name="keterangan" cols="30" rows="10" placeholder="Keterangan" class="form-control"><?= $dataID['keterangan']; ?></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                <form action="<?= base_url(); ?>barang/ubah/<?= $dataID['kode_produk']; ?>" method="post">
+                                    <div class="form-group">
+                                        <label for="id_kategori">Kategori</label>
+                                        <select name="id_kategori" class="form-control" id="id_kategori">
+                                            <option value="1">Peralatan</option>
+                                        </select>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="nama">Nama</label>
+                                        <input value="<?= $dataID['nama']; ?>" type="text" name="nama" class="form-control" id="nama" placeholder="Nama pengguna">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="keterangan">Keterangan</label>
+                                        <textarea placeholder="keterangan" class="form-control" name="keterangan" id="keterangan"><?= $dataID['keterangan']; ?></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="harga_beli">Harga Beli</label>
+                                                <input value="<?= $dataID['harga_beli']; ?>" type="text" placeholder="Harga Beli" class="form-control" name="harga_beli" id="harga_beli">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="harga_jual">Harga Jual</label>
+                                                <input value="<?= $dataID['harga_jual']; ?>" type="text" placeholder="Harga Jual" class="form-control" name="harga_jual" id="harga_jual">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stok">Stok</label>
+                                        <input value="<?= $dataID['stok']; ?>" type="text" name="stok" class="form-control" id="stok" placeholder="Stok">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary float-right">
+                                        Submit
+                                    </button>
                                 </form>
                             </div>
                         </div>
