@@ -41,7 +41,7 @@
                                     <div class="col-7 col-md-8">
                                         <div class="numbers">
                                             <p class="card-category">Total Barang</p>
-                                            <p class="card-title"><?= $total_barang; ?></p>
+                                            <p class="card-title"><?= number_format($total_barang); ?></p>
                                             <p>
                                             </p>
                                         </div>
@@ -69,7 +69,7 @@
                                     <div class="col-7 col-md-8">
                                         <div class="numbers">
                                             <p class="card-category">Total Stok Barang</p>
-                                            <p class="card-title"><?= $total_stok['total_stok'] ?></p>
+                                            <p class="card-title"><?= number_format($total_stok['total_stok']) ?></p>
                                             <p>
                                             </p>
                                         </div>

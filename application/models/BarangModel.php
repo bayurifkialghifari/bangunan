@@ -5,7 +5,7 @@ class BarangModel extends CI_Model
 {
     public function getData()
     {
-        return $this->db->get('produk')->result_array();
+        return $this->db->select('produk.*, kategori.nama as kategori')->join('kategori', 'kategori.id_kategori = produk.id_kategori')->get('produk')->result_array();
     }
     public function tambah($data)
     {
