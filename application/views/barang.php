@@ -57,12 +57,12 @@
                                         foreach ($allData as $data) : ?>
                                             <tr>
                                                 <td><?= $no++; ?></td>
-                                                <td><?= $data['id_kategori']; ?></td>
+                                                <td><?= $data['kategori']; ?></td>
                                                 <td><?= $data['nama']; ?></td>
                                                 <td><?= $data['keterangan']; ?></td>
-                                                <td><?= $data['harga_beli']; ?></td>
-                                                <td><?= $data['harga_jual']; ?></td>
-                                                <td><?= $data['stok']; ?></td>
+                                                <td><?= number_format($data['harga_beli']); ?></td>
+                                                <td><?= number_format($data['harga_jual']); ?></td>
+                                                <td><?= number_format($data['stok']); ?></td>
                                                 <td><?= $data['tanggal']; ?></td>
                                                 <td>
                                                     <a href="<?= base_url(); ?>barang/detail/<?= $data['kode_produk']; ?>" class="btn btn-success">Ubah</a>
@@ -96,7 +96,10 @@
                         <div class="form-group">
                             <label for="id_kategori">Kategori</label>
                             <select name="id_kategori" class="form-control" id="id_kategori">
-                                <option value="1">Peralatan</option>
+                                <option value="">--Kategori</option>
+                                <?php foreach($kategori as $k) : ?>
+                                    <option value="<?= $k['id_kategori'] ?>"><?= $k['nama'] ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-group">

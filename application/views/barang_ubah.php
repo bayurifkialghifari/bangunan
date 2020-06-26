@@ -39,7 +39,14 @@
                                     <div class="form-group">
                                         <label for="id_kategori">Kategori</label>
                                         <select name="id_kategori" class="form-control" id="id_kategori">
-                                            <option value="1">Peralatan</option>
+                                            <option value="">--Kategori</option>
+                                            <?php foreach($kategori as $k) : ?>
+                                                <?php if($k['id_kategori'] == $dataID['id_kategori']) : ?>
+                                                    <option selected="" value="<?= $k['id_kategori'] ?>"><?= $k['nama'] ?></option>
+                                                <?php else: ?>
+                                                    <option value="<?= $k['id_kategori'] ?>"><?= $k['nama'] ?></option>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                     <div class="form-group">

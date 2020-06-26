@@ -26,10 +26,21 @@ class TransaksiModel extends CI_Model {
 
 		return $exe->result_array();
 	}
+	
+	function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
 
 	public function tambah($produk, $dibeli, $total, $dibayar, $sisa, $status)
 	{
 		$data['kode_produk'] = $produk;
+		$data['kode_transaksi'] = $this->generateRandomString();
 		$data['id_kasir'] = $this->session->userdata('id_user');
 		$data['qty'] = $dibeli;
 		$data['total'] = $total;
@@ -42,7 +53,7 @@ class TransaksiModel extends CI_Model {
 		// Update stok produk
 		$this->update($produk, $dibeli);
 
-		return $exe2;
+		return $exe;
 	}
 
 	public function ubah($id, $dibayar, $sisa, $status)

@@ -43,6 +43,7 @@
                                     <thead class="text-primary">
                                         <tr>
                                             <th>No</th>
+                                            <th>Kode</th>
                                             <th>Kasir</th>
                                             <th>Produk</th>
                                             <th>Harga Produk</th>
@@ -60,13 +61,14 @@
                                         foreach ($allData as $data) : ?>
                                             <tr>
                                                 <td><?= $no++; ?></td>
+                                                <td><?= $data['kode_transaksi']; ?></td>
                                                 <td><?= $data['kasir']; ?></td>
                                                 <td><?= $data['produk']; ?></td>
-                                                <td><?= $data['harga']; ?></td>
-                                                <td><?= $data['qty']; ?></td>
-                                                <td><?= $data['total']; ?></td>
-                                                <td><?= $data['dibayar']; ?></td>
-                                                <td><?= $data['sisa']; ?></td>
+                                                <td><?= number_format($data['harga']); ?></td>
+                                                <td><?= number_format($data['qty']); ?></td>
+                                                <td><?= number_format($data['total']); ?></td>
+                                                <td><?= number_format($data['dibayar']); ?></td>
+                                                <td><?= number_format($data['sisa']); ?></td>
                                                 <td><?= $data['status']; ?></td>
                                                 <td><?= $data['tanggal']; ?></td>
                                                 <td>
