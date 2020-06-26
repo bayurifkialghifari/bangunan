@@ -22,6 +22,7 @@ class Login extends CI_Controller
                 $session = [
                     'id_jabatan' => $user['id_jabatan'],
                     'username' => $user['username'],
+                    'id_user' => $user['id_pengguna'],
                     'login' => TRUE
                 ];
                 $this->session->set_userdata($session);
