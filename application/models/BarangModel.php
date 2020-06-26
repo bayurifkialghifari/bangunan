@@ -1,3 +1,4 @@
+
 <?php
 
 class BarangModel extends CI_Model
